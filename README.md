@@ -44,8 +44,8 @@
 ---
 
 ## 📬 Connect With Me
-- **LinkedIn:** [(https://www.linkedin.com/in/ajay-mishra-dev)]
-- **GitHub:** [(https://github.com/ajaymishraj)]
+- **LinkedIn:** [https://www.linkedin.com/in/ajay-mishra-dev]
+- **GitHub:** [https://github.com/ajaymishraj]
 - **Email:** [ajaymishraj25@gmail.com]
 
 ---
