@@ -12,6 +12,30 @@
 | **Status** | 🔄 In Progress |
 ---
 
+## 📁 Tasks
+
+### 🔄 Task 1 — Personal Portfolio Website
+- **Status:** In Progress
+- **Description:** A personal portfolio website built with HTML and CSS, featuring a Header, About, Skills, Projects, Resume download, Contact, and Footer section.
+- **Tech Used:** HTML, CSS
+- **Folder:** [Task1-Portfolio/](./Level1/Task1-Portfolio/)
+
+---
+
+### ⏳ Task 2 — Landing Page
+- **Status:** Pending
+- **Description:** A visually appealing landing page built with HTML and CSS, focusing on layout, sections, color palette, alignments, padding, and user-friendly design.
+- **Tech Used:** HTML, CSS
+- **Folder:** [Task2-LandingPage/](./Level1/Task2-LandingPage/)
+
+---
+
+### ⏳ Task 3 — Calculator
+- **Status:** Pending
+- **Description:** A basic interactive calculator with buttons for addition, subtraction, multiplication, and division. Features a display screen, CSS Grid layout, and JavaScript event handling.
+- **Tech Used:** HTML, CSS, JavaScript
+- **Folder:** [Task3-Calculator/](./Level1/Task3-Calculator/)
+
 ## 🛠️ Tech Stack
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
