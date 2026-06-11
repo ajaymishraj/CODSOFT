@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="hQVJ7mOa7zxgFxrZ0AZW48F755rSomwP8smV1NHbOT0" />
+    <meta
+      name="description"
+      content="Web Developer and B.Tech AI student at NIET, Greater Noida. Built and deployed Bunkoo Meter (500+ users), Finacy, and NIET Lost & Found — production-grade Firebase web tools. Skilled in DSA, Generative AI, Prompt Engineering, and privacy-first architecture."
+    />
+    <meta
+      name="keywords"
+      content="Ajay Mishra, full stack developer, Firebase developer, Firestore, IndexedDB, DSA, generative AI, prompt engineering, Bunkoo Meter, Finacy, NIET Lost & Found, NIET, B.Tech AI, web tools, PWA"
+    />
+    <meta name="author" content="Ajay Mishra" />
+    <meta
+      property="og:title"
+      content="Ajay Mishra — Software Engineer & Web Tools Creator"
+    />
+    <meta
+      property="og:description"
+      content="Full-stack developer building production-grade Firebase web tools used by 500+ users. Creator of Bunkoo Meter, Finacy, and NIET Lost & Found."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ajxmishra1.web.app" />
+    <title>Ajay Mishra — Software Engineer &amp; Web Tools Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Firebase SDK removed for local development -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Cursor Trail Elements -->
+    <div class="cursor-trail"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Scroll to Top Button -->
+    <button
+      id="scroll-to-top"
+      class="fixed bottom-8 right-8 w-12 h-12 bg-cyan-500 text-black rounded-full shadow-lg hover:bg-cyan-400 transition-all duration-300 transform translate-y-20 opacity-0 z-40 flex items-center justify-center"
+      aria-label="Scroll to top"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        ></path>
+      </svg>
+    </button>
+
+    <nav
+      id="navbar"
+      class="fixed w-full z-50 transition-all duration-300 py-3 md:py-4 px-4 md:px-10 flex justify-between items-center"
+      role="navigation"
+      aria-label="Main navigation"
+    >
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <!-- Mobile Menu Button (Left Side) -->
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-button"
+            class="theme-toggle-modern flex items-center justify-center w-10 h-10 focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            <svg
+              id="menu-icon"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <ul class="hidden md:flex gap-6 lg:gap-8 font-medium" role="menubar">
+          <li role="none">
+            <a
+              href="#home"
+              class="nav-link text-gray-300 hover:text-cyan-400"
+              role="menuitem"
+              >Home</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="#about"
+              class="nav-link text-gray-300 hover:text-cyan-400"
+              role="menuitem"
+              >About</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="#projects"
+              class="nav-link text-gray-300 hover:text-cyan-400"
+              role="menuitem"
+              >Projects</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="#highlights"
+              class="nav-link text-gray-300 hover:text-cyan-400"
+              role="menuitem"
+              >Highlights</a
+            >
+          </li>
+          <li role="none">
+            <a
+              href="#contact"
+              class="nav-link text-gray-300 hover:text-cyan-400"
+              role="menuitem"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex items-center gap-3 ml-auto md:ml-0">
+        <!-- Modern Theme Toggle -->
+        <button
+          id="theme-toggle"
+          class="theme-toggle-modern flex items-center justify-center w-10 h-10"
+          aria-label="Toggle theme"
+        >
+          <svg
+            id="sun-icon"
+            class="w-5 h-5 text-yellow-400"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+            />
+          </svg>
+          <svg
+            id="moon-icon"
+            class="w-5 h-5 text-gray-300 hidden"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu overlay on the left with solid blur -->
+      <div
+        id="mobile-menu"
+        class="hidden fixed top-0 left-0 h-full w-full sm:w-80 bg-black/98 sm:bg-black/95 sm:backdrop-blur-xl z-[60] transform -translate-x-full transition-transform duration-300 border-r border-white/5"
+      >
+        <div class="p-6 flex flex-col h-full">
+          <div class="flex justify-between items-center mb-12">
+            <span
+              class="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
+              >Menu</span
+            >
+            <button
+              id="close-menu"
+              class="theme-toggle-modern flex items-center justify-center w-10 h-10 focus:outline-none"
+              aria-label="Close menu"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <ul class="flex flex-col gap-8 font-medium text-gray-300 text-lg">
+            <li>
+              <a
+                href="#home"
+                class="hover:text-cyan-400 transition mobile-nav-link"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#about"
+                class="hover:text-cyan-400 transition mobile-nav-link"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="hover:text-cyan-400 transition mobile-nav-link"
+                >Projects</a
+              >
+            </li>
+            <li>
+              <a
+                href="#highlights"
+                class="hover:text-cyan-400 transition mobile-nav-link"
+                >Highlights</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="hover:text-cyan-400 transition mobile-nav-link"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section
+      id="home"
+      class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-24 pb-16 relative"
+      role="main"
+      aria-labelledby="hero-title"
+    >
+      <!-- Hero Gradient Blobs background -->
+      <div class="hero-blob-container">
+        <div class="absolute w-[45vw] h-[45vw] rounded-full bg-cyan-500/10 blur-[130px] -top-[10%] -left-[10%] animate-blob-1"></div>
+        <div class="absolute w-[40vw] h-[40vw] rounded-full bg-purple-500/10 blur-[130px] bottom-[10%] -right-[5%] animate-blob-2"></div>
+        <div class="absolute w-[35vw] h-[35vw] rounded-full bg-pink-500/5 blur-[110px] top-[35%] left-[25%] animate-blob-3"></div>
+      </div>
+
+      <h1
+        id="hero-title"
+        data-aos="zoom-out"
+        data-aos-duration="1500"
+        class="text-4xl sm:text-6xl md:text-9xl font-black mb-4 tracking-tighter hero-gradient-text relative z-10"
+        style="padding-bottom: 9px"
+      >
+        Ajay Mishra
+      </h1>
+      <p
+        data-aos="fade-up"
+        data-aos-delay="300"
+        class="text-xl md:text-2xl text-gray-400 max-w-2xl relative z-10"
+      >
+        Web Developer • Firebase • Python • DSA • Generative AI
+      </p>
+      <p
+        data-aos="fade-up"
+        data-aos-delay="500"
+        class="text-lg text-gray-400 max-w-2xl mt-2 relative z-10"
+      >
+        I build tools that real users actually use. 500+ users across colleges, 6,300+ tracked events, and 3 live deployed projects — built with Firebase, Generative AI, and a privacy-first approach from first year of my college.
+      </p>
+
+      <div
+        data-aos="fade-up"
+        data-aos-delay="600"
+        class="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto items-center relative z-10"
+      >
+        <a
+          href="#projects"
+          class="btn-magnetic btn-enhanced ripple-effect magnetic-element px-8 py-4 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition shadow-[0_0_20px_rgba(34,211,238,0.4)] w-full sm:w-auto text-center"
+          >View Projects</a
+        >
+        <a
+          href="#contact"
+          class="btn-magnetic btn-enhanced ripple-effect magnetic-element px-8 py-4 border border-white/20 rounded-full font-bold hover:bg-white/10 transition w-full sm:w-auto text-center"
+          >Contact Me</a
+        >
+      </div>
+
+      <div
+        class="absolute bottom-6 md:bottom-10 animate-bounce text-gray-500 hidden sm:block md:block z-10"
+      >
+        <p
+          class="text-xs uppercase tracking-widest bg-black/50 px-2 rounded backdrop-blur-sm"
+        >
+          Scroll Down
+        </p>
+        <div
+          class="w-[1px] h-8 md:h-12 bg-gradient-to-b from-cyan-500 to-transparent mx-auto mt-2"
+        ></div>
+      </div>
+    </section>
+
+    <section
+      id="about"
+      class="py-16 md:py-24 px-4 md:px-10 max-w-7xl mx-auto"
+      aria-labelledby="about-title"
+    >
+      <h2 id="about-title" class="sr-only">About Ajay Mishra</h2>
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div data-aos="fade-right" class="flex justify-center">
+          <div class="avatar-ring w-64 h-64 md:w-80 md:h-80 overflow-hidden">
+            <img
+              src="wp.jpg"
+              alt="Avatar"
+              class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition duration-500"
+            />
+          </div>
+        </div>
+
+        <div data-aos="fade-left">
+          <h2 class="text-4xl font-bold mb-2">About Me</h2>
+          <div class="w-20 h-1 bg-purple-500 mb-6"></div>
+          <p class="text-gray-300 leading-relaxed text-lg mb-6">
+            I'm Ajay Mishra — a 1st-year B.Tech CSE (AI) student at NIET, Greater Noida (AKTU) and a web developer who ships tools that real users depend on. I specialize in full-stack Firebase applications, privacy-first design, and Generative AI-accelerated workflows.
+          </p>
+          <p class="text-gray-300 leading-relaxed text-lg mb-6">
+            I've built and deployed three production web apps spanning attendance tracking, business management, and campus utilities — all from scratch using Firebase, HTML5/CSS3, JavaScript, and Prompt Engineering, with a strong emphasis on performance and on-device data privacy.
+          </p>
+          <p class="text-gray-300 leading-relaxed text-lg mb-6">
+            Beyond web development, I have built a strong foundation in Data Structures & Algorithms (C) and am actively deepening that knowledge. I prioritise lean, maintainable solutions that solve real problems without unnecessary complexity.
+          </p>
+
+          <div class="flex flex-wrap gap-4 stats-container">
+            <div
+              class="bg-white/5 border border-white/10 px-6 py-3 rounded-full float-animation glow-effect"
+              style="animation-delay: 0s"
+            >
+              <span class="text-cyan-400 font-bold text-xl">Fresher</span>
+            </div>
+            <div
+              class="bg-white/5 border border-white/10 px-6 py-3 rounded-full float-animation glow-effect"
+              style="animation-delay: 0.5s"
+            >
+              <span class="text-purple-400 font-bold text-xl">5+</span
+              ><span class="text-purple-400 font-bold text-xl"> Projects</span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-white/5">
+      <h2
+        class="text-center text-4xl font-black mb-16 uppercase tracking-widest"
+      >
+        My Skills
+      </h2>
+
+      <div class="max-w-6xl mx-auto px-4 md:px-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Frontend Skills -->
+          <div
+            class="bg-neutral-900 border border-white/10 rounded-2xl p-6 hover:border-cyan-500 transition-all duration-300 glow-effect"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-cyan-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-cyan-400">Frontend</h3>
+            </div>
+            <ul class="text-gray-400 text-sm space-y-2">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+          </div>
+
+          <!-- Backend Skills -->
+          <div
+            class="bg-neutral-900 border border-white/10 rounded-2xl p-6 hover:border-purple-500 transition-all duration-300 glow-effect"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-purple-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-purple-400">Backend</h3>
+            </div>
+            <ul class="text-gray-400 text-sm space-y-2">
+              <li>Firebase (Auth, Hosting)</li>
+              <li>Firestore & Realtime DB</li>
+              <li>IndexedDB</li>
+            </ul>
+          </div>
+
+          <!-- Programming Languages -->
+          <div
+            class="bg-neutral-900 border border-white/10 rounded-2xl p-6 hover:border-green-500 transition-all duration-300 glow-effect"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-green-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-green-400">Languages</h3>
+            </div>
+            <ul class="text-gray-400 text-sm space-y-2">
+              <li>Python</li>
+              <li>C</li>
+            </ul>
+          </div>
+          <!-- DSA Skills -->
+          <div
+            class="bg-neutral-900 border border-white/10 rounded-2xl p-6 hover:border-yellow-500 transition-all duration-300 glow-effect"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-yellow-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-yellow-400">DSA</h3>
+            </div>
+            <ul class="text-gray-400 text-sm space-y-2">
+              <li>Data Structures</li>
+              <li>Algorithms (C)</li>
+            </ul>
+          </div>
+
+          <!-- AI & ML Foundations -->
+          <div
+            class="bg-neutral-900 border border-white/10 rounded-2xl p-6 hover:border-rose-500 transition-all duration-300 glow-effect"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-rose-500/20 rounded-lg flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-rose-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-rose-400">AI & ML</h3>
+            </div>
+            <ul class="text-gray-400 text-sm space-y-2">
+              <li>Machine Learning Basics</li>
+              <li>AI Tools & APIs</li>
+              <li>LLM Prompt Design</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Additional Skills Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+          <div
+            class="bg-neutral-900/50 border border-white/10 rounded-lg p-4 text-center hover:border-cyan-500 transition-all duration-300"
+          >
+            <div class="text-2xl mb-2">🎨</div>
+            <h4 class="text-sm font-semibold text-gray-300">UI/UX Design</h4>
+          </div>
+          <div
+            class="bg-neutral-900/50 border border-white/10 rounded-lg p-4 text-center hover:border-purple-500 transition-all duration-300"
+          >
+            <div class="text-2xl mb-2">📱</div>
+            <h4 class="text-sm font-semibold text-gray-300">
+              PWA Development
+            </h4>
+          </div>
+          <div
+            class="bg-neutral-900/50 border border-white/10 rounded-lg p-4 text-center hover:border-green-500 transition-all duration-300"
+          >
+            <div class="text-2xl mb-2">⚡</div>
+            <h4 class="text-sm font-semibold text-gray-300">Performance</h4>
+          </div>
+          <div
+            class="bg-neutral-900/50 border border-white/10 rounded-lg p-4 text-center hover:border-yellow-500 transition-all duration-300"
+          >
+            <div class="text-2xl mb-2">🤖</div>
+            <h4 class="text-sm font-semibold text-gray-300">AI & Prompt Engineering</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Experience Section -->
+    <section
+      id="education"
+      class="py-16 md:py-24 px-4 md:px-10 max-w-6xl mx-auto"
+      aria-labelledby="education-title"
+    >
+      <h2
+        id="education-title"
+        class="text-3xl md:text-5xl font-black mb-16 text-center"
+        data-aos="fade-up"
+      >
+        EDUCATION & <span class="text-purple-400">EXPERIENCE</span>
+      </h2>
+
+      <!-- Timeline Container -->
+      <div class="relative overflow-hidden p-2 md:p-10 h-full">
+        <!-- Center line (Desktop only) -->
+        <div class="absolute border-opacity-20 border-gray-700 h-full border left-1/2 transform -translate-x-1/2 md:block hidden"></div>
+        <!-- Left line (Mobile only) -->
+        <div class="absolute border-opacity-20 border-gray-700 h-full border left-4 md:hidden block"></div>
+        
+        <!-- Timeline Item 1: Independent Developer (Right timeline on Desktop, full width on Mobile) -->
+        <div class="mb-12 flex justify-between items-center w-full md:flex-row-reverse flex-row relative">
+          <div class="order-1 w-5/12 md:block hidden"></div>
+          <!-- Dot Indicator -->
+          <div class="z-20 flex items-center order-1 bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] w-8 h-8 rounded-full md:left-1/2 md:-translate-x-1/2 left-0 absolute">
+            <svg class="mx-auto w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <!-- Card Content -->
+          <div class="order-1 bg-neutral-900 border border-white/10 rounded-2xl md:w-5/12 w-full ml-10 md:ml-0 p-6 hover:border-purple-500 transition-all duration-300 glow-effect" data-aos="fade-left">
+            <div class="flex justify-between items-start mb-2 flex-wrap gap-2">
+              <h4 class="font-bold text-lg">Independent Developer</h4>
+              <span class="text-xs text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full whitespace-nowrap">2025</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-2 font-medium">Self-initiated Projects</p>
+            <ul class="text-gray-500 text-xs space-y-1 list-disc list-inside">
+              <li>Bunkoo Meter — PWA attendance tracker with 500+ active users, 6,300+ events tracked, 3,100+ platform views. Features AI Insights, friends leaderboard, daily marking, and IndexedDB storage</li>
+              <li>Finacy — local-first business management system handling inventory, sales, rentals, and real-time low-stock alerts with 100% on-device data privacy</li>
+              <li>NIET Lost & Found — campus-wide lost item portal with Firestore, Firebase Storage, admin dashboard, and claim management for NIET college</li>
+              <li>Built on Firebase with privacy-first architecture and Generative AI-accelerated development</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2: B.Tech (Left timeline on Desktop, full width on Mobile) -->
+        <div class="mb-12 flex justify-between items-center w-full md:flex-row flex-row relative">
+          <div class="order-1 w-5/12 md:block hidden"></div>
+          <!-- Dot Indicator -->
+          <div class="z-20 flex items-center order-1 bg-cyan-500 shadow-[0_0_15px_rgba(34,211,238,0.5)] w-8 h-8 rounded-full md:left-1/2 md:-translate-x-1/2 left-0 absolute">
+            <svg class="mx-auto w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+            </svg>
+          </div>
+          <!-- Card Content -->
+          <div class="order-1 bg-neutral-900 border border-white/10 rounded-2xl md:w-5/12 w-full ml-10 md:ml-0 p-6 hover:border-cyan-500 transition-all duration-300 glow-effect" data-aos="fade-right">
+            <div class="flex justify-between items-start mb-2 flex-wrap gap-2">
+              <h4 class="font-bold text-lg">B.Tech — Computer Science (AI)</h4>
+              <span class="text-xs text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full whitespace-nowrap">2025 — 2029</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-1">Noida Institute of Engineering & Technology (NIET), Greater Noida</p>
+            <p class="text-gray-500 text-xs">1st Year • AI Specialization</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3: Higher Secondary (Right timeline on Desktop, full width on Mobile) -->
+        <div class="mb-12 flex justify-between items-center w-full md:flex-row-reverse flex-row relative">
+          <div class="order-1 w-5/12 md:block hidden"></div>
+          <!-- Dot Indicator -->
+          <div class="z-20 flex items-center order-1 bg-cyan-500 shadow-[0_0_15px_rgba(34,211,238,0.5)] w-8 h-8 rounded-full md:left-1/2 md:-translate-x-1/2 left-0 absolute">
+            <svg class="mx-auto w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+            </svg>
+          </div>
+          <!-- Card Content -->
+          <div class="order-1 bg-neutral-900 border border-white/10 rounded-2xl md:w-5/12 w-full ml-10 md:ml-0 p-6 hover:border-cyan-500 transition-all duration-300 glow-effect" data-aos="fade-left">
+            <div class="flex justify-between items-start mb-2 flex-wrap gap-2">
+              <h4 class="font-bold text-lg">Higher Secondary (12th)</h4>
+              <span class="text-xs text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full whitespace-nowrap">2025</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-1">Indian Public School (IPS), Vrindavan</p>
+            <p class="text-gray-500 text-xs">Science stream</p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 4: High School (Left timeline on Desktop, full width on Mobile) -->
+        <div class="mb-12 flex justify-between items-center w-full md:flex-row flex-row relative">
+          <div class="order-1 w-5/12 md:block hidden"></div>
+          <!-- Dot Indicator -->
+          <div class="z-20 flex items-center order-1 bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.5)] w-8 h-8 rounded-full md:left-1/2 md:-translate-x-1/2 left-0 absolute">
+            <svg class="mx-auto w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+            </svg>
+          </div>
+          <!-- Card Content -->
+          <div class="order-1 bg-neutral-900 border border-white/10 rounded-2xl md:w-5/12 w-full ml-10 md:ml-0 p-6 hover:border-purple-500 transition-all duration-300 glow-effect" data-aos="fade-right">
+            <div class="flex justify-between items-start mb-2 flex-wrap gap-2">
+              <h4 class="font-bold text-lg">High School (10th)</h4>
+              <span class="text-xs text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full whitespace-nowrap">2023 — 96.6%</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-1">Kanha Makhan Public School (KMPS), Vrindavan</p>
+            <p class="text-gray-500 text-xs">Distinction — Top performer</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Highlights Section -->
+    <section
+      id="highlights"
+      class="py-16 md:py-24 px-4 md:px-10 max-w-7xl mx-auto"
+      aria-labelledby="highlights-title"
+    >
+      <h2
+        id="highlights-title"
+        class="text-3xl md:text-5xl font-black mb-4"
+        data-aos="fade-up"
+      >
+        CAREER <span class="text-cyan-400">HIGHLIGHTS</span>
+      </h2>
+      <p
+        class="text-gray-400 max-w-3xl mb-10 md:mb-14"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        Certifications, workshops, and milestones from my development journey.
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article
+          data-aos="fade-up"
+          class="bg-neutral-900 border border-white/10 rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300 glow-effect"
+        >
+          <h3 class="text-lg font-bold text-cyan-400 mb-3">Internships</h3>
+          <p class="text-gray-400 text-sm mb-3">
+            <!-- Internship timeline, role details, and impact summary. -->
+             Coming soon.....
+          </p>
+          <ul class="text-gray-500 text-xs space-y-1 list-disc list-inside">
+            <!-- <li>Organization or team name</li>
+            <li>Role and duration</li>
+            <li>Key responsibilities and outcomes</li> -->
+          </ul>
+        </article>
+
+        <article
+          data-aos="fade-up"
+          data-aos-delay="80"
+          class="bg-neutral-900 border border-white/10 rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-300 glow-effect"
+        >
+          <h3 class="text-lg font-bold text-purple-400 mb-3">Certifications</h3>
+          <p class="text-gray-400 text-sm mb-3">
+            Professional certifications 
+            <!-- and technical credentials. -->
+          </p>
+          <ul class="text-gray-500 text-xs space-y-1 list-disc list-inside">
+            <li>Master Generative AI & Generative AI tools (ChatGPT & more) | Udemy Business | January 2026 | <a style="color: #00FFFF;" href="gen ai ajay.pdf" target="_blank">View Certificate</a></li>
+            <li>Next Gen Technologies | Infosys Springboard | February 2026 | <a style="color: #00FFFF;" href="next gen ajay.pdf" target="_blank">View Certificate</a></li>
+            <li>Code Sprint 2.0 — The Power of AI Today | Reboot Club, NIET | April 2026 | <a style="color: #00FFFF;" href="https://credsverse.com/credentials/213b1486-8894-4523-b56e-ac8b429c0338" target="_blank">View Certificate</a></li>
+          </ul>
+        </article>
+        <article
+          data-aos="fade-up"
+          class="bg-neutral-900 border border-white/10 rounded-2xl p-6 hover:border-yellow-500/50 transition-all duration-300 glow-effect"
+        >
+          <h3 class="text-lg font-bold text-yellow-400 mb-3">Achievements & Workshops</h3>
+          <p class="text-gray-400 text-sm mb-3">
+            Actively learning and growing through workshops and community events.
+          </p>
+          <ul class="text-gray-500 text-xs space-y-1 list-disc list-inside">
+            <li><strong>Code Sprint 2.0 — The Power of AI Today</strong> — Reboot Club, NIET | April 2026</li>
+            <li><strong>Claude 101 Workshop</strong> — Outskill Team | May 2026</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- What I Do Section -->
+    <section class="py-16 md:py-20 bg-white/5">
+      <h2
+        class="text-center text-3xl md:text-4xl font-black mb-10 md:mb-16 uppercase tracking-widest"
+        data-aos="fade-up"
+      >
+        What I <span class="text-cyan-400">Do</span>
+      </h2>
+      <div
+        class="max-w-6xl mx-auto px-4 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
+        <div
+          data-aos="fade-up"
+          data-aos-delay="0"
+          class="bg-neutral-900 border border-white/10 rounded-2xl p-6 text-center hover:border-cyan-500 transition-all duration-300 glow-effect group"
+        >
+          <div
+            class="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-cyan-500/20 transition"
+          >
+            <svg
+              class="w-7 h-7 text-cyan-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Web Development</h3>
+          <p class="text-gray-400 text-sm">
+            Building responsive, fast web applications with Firebase, modern JS,
+            and AI-optimized workflows.
+          </p>
+        </div>
+        <div
+          data-aos="fade-up"
+          data-aos-delay="100"
+          class="bg-neutral-900 border border-white/10 rounded-2xl p-6 text-center hover:border-purple-500 transition-all duration-300 glow-effect group"
+        >
+          <div
+            class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-500/20 transition"
+          >
+            <svg
+              class="w-7 h-7 text-purple-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">DSA & Problem Solving</h3>
+          <p class="text-gray-400 text-sm">
+            Building strong algorithmic foundations in C/C++ — arrays, linked lists, trees, sorting, and searching applied to real problems.
+          </p>
+        </div>
+        <div
+          data-aos="fade-up"
+          data-aos-delay="200"
+          class="bg-neutral-900 border border-white/10 rounded-2xl p-6 text-center hover:border-green-500 transition-all duration-300 glow-effect group"
+        >
+          <div
+            class="w-14 h-14 bg-green-500/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-500/20 transition"
+          >
+            <svg
+              class="w-7 h-7 text-green-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">UI/UX Design</h3>
+          <p class="text-gray-400 text-sm">
+            Designing clean, intuitive interfaces that prioritize user
+            experience and simplicity.
+          </p>
+        </div>
+        <div
+          data-aos="fade-up"
+          data-aos-delay="300"
+          class="bg-neutral-900 border border-white/10 rounded-2xl p-6 text-center hover:border-yellow-500 transition-all duration-300 glow-effect group"
+        >
+          <div
+            class="w-14 h-14 bg-yellow-500/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-yellow-500/20 transition"
+          >
+            <svg
+              class="w-7 h-7 text-yellow-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Quick Tools</h3>
+          <p class="text-gray-400 text-sm">
+            Building lightweight micro-utilities that solve real everyday
+            problems fast.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="projects"
+      class="py-16 md:py-24 px-4 md:px-10 max-w-7xl mx-auto"
+      aria-labelledby="projects-title"
+    >
+      <h2
+        id="projects-title"
+        class="text-3xl md:text-5xl font-black mb-10 md:mb-16"
+        data-aos="fade-up"
+      >
+        FEATURED <span class="text-cyan-400">PROJECTS</span>
+      </h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Finacy -->
+        <div
+          data-aos="fade-up"
+          class="group project-card bg-neutral-900 border border-white/10 p-4 rounded-2xl hover:border-cyan-500 transition-all duration-500 transform hover:-translate-y-2 glow-effect"
+        >
+          <div class="project-overlay"></div>
+          <div class="relative overflow-hidden rounded-xl mb-6">
+            <img
+              src="finacyss.png"
+              alt="Finacy screenshot"
+              class="w-full h-48 object-cover opacity-60 group-hover:opacity-100 transition duration-500"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
+            ></div>
+            <p class="absolute bottom-2 left-2 text-xs text-gray-300">
+              Management solution used by local-small businesses
+            </p>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">
+            Finacy — Business Management System
+          </h3>
+          <p class="text-gray-400 text-sm mb-4">
+            Comprehensive command center for inventory, sales, and rentals with
+            local data storage and privacy-first design.
+          </p>
+          <ul class="text-gray-400 text-sm mb-4 list-disc list-inside">
+            <li><strong>Technical Challenge:</strong> The hardest bug I fixed was optimizing IndexedDB storage to minimize overflow chance, keeping data on device for privacy.</li>
+          </ul>
+          <div class="flex gap-2 mb-4">
+            <a
+              href="https://finacy-91d2a.web.app"
+              target="_blank"
+              class="text-cyan-400 hover:text-cyan-300 text-sm underline"
+              >Live Demo</a
+            >
+          </div>
+          <div class="flex gap-2 mb-6">
+            <span
+              class="text-[10px] px-2 py-1 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded"
+              >Prompt Engineering</span
+            >
+            <span
+              class="text-[10px] px-2 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded"
+              >Firebase</span
+            >
+            <span
+              class="text-[10px] px-2 py-1 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded"
+              >JavaScript</span
+            >
+          </div>
+        </div>
+
+        <!-- Bunkoo Meter -->
+        <div
+          data-aos="fade-up"
+          class="group project-card bg-neutral-900 border border-white/10 p-4 rounded-2xl hover:border-cyan-500 transition-all duration-500 transform hover:-translate-y-2 glow-effect"
+        >
+          <div class="project-overlay"></div>
+          <div class="relative overflow-hidden rounded-xl mb-6">
+            <img
+              src="bunkooss.png"
+              alt="Bunkoo Meter screenshot"
+              class="w-full h-48 object-cover opacity-60 group-hover:opacity-100 transition duration-500"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
+            ></div>
+            <p class="absolute bottom-2 left-2 text-xs text-gray-300">
+              Attendance analyzer used by many students
+            </p>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">
+            Bunkoo Meter — Attendance Tracker
+          </h3>
+          <p class="text-gray-400 text-sm mb-4">
+            Installable PWA attendance tracker serving 500+ active users across colleges — 6,300+ events tracked, 3,100+ platform views. Features AI Insights, friends leaderboard with real-time ranking, daily attendance marking, holiday management, and IndexedDB storage.
+          </p>
+          <ul class="text-gray-400 text-sm mb-4 list-disc list-inside">
+            <li><strong>Technical Challenge:</strong> Migrating from localStorage to IndexedDB while maintaining data integrity, and building real-time friends leaderboard with Firebase.</li>
+          </ul>
+          <div class="flex gap-2 mb-4">
+            <a
+              href="https://bunkoo-meter.web.app"
+              target="_blank"
+              class="text-cyan-400 hover:text-cyan-300 text-sm underline"
+              >Live Demo</a
+            >
+          </div>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="text-[10px] px-2 py-1 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded"
+              >PWA</span
+            >
+            <span
+              class="text-[10px] px-2 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded"
+              >Firebase</span
+            >
+            <span
+              class="text-[10px] px-2 py-1 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded"
+              >IndexedDB</span
+            >
+            <span
+              class="text-[10px] px-2 py-1 bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 rounded"
+              >JavaScript</span
+            >
+          </div>
+        </div>
+
+        <!-- NIET Lost & Found -->
+        <div
+          data-aos="fade-up"
+          class="group project-card bg-neutral-900 border border-white/10 p-4 rounded-2xl hover:border-cyan-500 transition-all duration-500 transform hover:-translate-y-2 glow-effect"
+        >
+          <div class="project-overlay"></div>
+          <div class="relative overflow-hidden rounded-xl mb-6">
+            <img
+              src="nietlostfoundss.png"
+              alt="NIET Lost & Found screenshot"
+              class="w-full h-48 object-cover opacity-60 group-hover:opacity-100 transition duration-500"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent"
+            ></div>
+            <p class="absolute bottom-2 left-2 text-xs text-gray-300">
+              Campus-wide lost item recovery portal
+            </p>
+          </div>
+          <h3 class="text-2xl font-bold mb-2">
+            NIET Lost & Found — Campus Portal
+          </h3>
+          <p class="text-gray-400 text-sm mb-4">
+            Full-stack campus lost & found portal for NIET college. Browse found items, report discoveries with photo uploads, and an admin dashboard for claim management — all with no login required for students.
+          </p>
+          <ul class="text-gray-400 text-sm mb-4 list-disc list-inside">
+            <li><strong>Technical Challenge:</strong> Building a secure admin portal with Firebase Auth while keeping the public interface login-free, plus Firestore composite indexes for multi-filter search.</li>
+          </ul>
+          <div class="flex gap-2 mb-4">
+            <a
+              href="https://niet-lostfound.web.app"
+              target="_blank"
+              class="text-cyan-400 hover:text-cyan-300 text-sm underline"
+              >Live Demo</a
+            >
+          </div>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="text-[10px] px-2 py-1 bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded"
+              >Firestore</span
+            >
+            <span
+              class="text-[10px] px-2 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded"
+              >Firebase Auth</span
+            >
+            <span
+              class="text-[10px] px-2 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded"
+              >Firebase Storage</span
+            >
+            <span
+              class="text-[10px] px-2 py-1 bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 rounded"
+              >JavaScript</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="contact"
+      class="py-16 md:py-24 px-4 md:px-10 max-w-4xl mx-auto text-center"
+      aria-labelledby="contact-title"
+    >
+      <h2
+        id="contact-title"
+        data-aos="zoom-in"
+        class="text-3xl md:text-6xl font-black mb-8 text-glow-cyan uppercase"
+      >
+        Let's Connect
+      </h2>
+
+      <p class="text-gray-400 mb-6">
+        Open to 2026 internship opportunities. Available for collaborations on practical web tools.
+      </p>
+      <div
+        class="bg-white/5 border border-white/10 p-8 rounded-2xl max-w-2xl mx-auto"
+      >
+        <p class="text-gray-300 mb-6 text-lg">
+          Feel free to reach out directly via email or through the platforms
+          below. I typically respond within 24-48 hours.
+        </p>
+
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center mb-8 contact-buttons"
+        >
+          <a
+            href="mailto:ajaymishraj25@gmail.com"
+            class="flex items-center justify-center gap-2 px-6 py-3 bg-cyan-500 text-black font-bold rounded-full hover:bg-cyan-400 transition shadow-[0_0_20px_rgba(34,211,238,0.4)] glow-effect btn-enhanced ripple-effect magnetic-element"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+              ></path>
+              <path
+                d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+              ></path>
+            </svg>
+            Send Email
+          </a>
+          <a
+            href="https://linkedin.com/in/ajay-mishra-558a62389/"
+            target="_blank"
+            class="flex items-center justify-center gap-2 px-6 py-3 border border-white/20 rounded-full font-bold hover:bg-white/10 transition glow-effect btn-enhanced ripple-effect magnetic-element"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+              />
+            </svg>
+            LinkedIn
+          </a>
+          <a
+            href="https://github.com/ajaymishraj"
+            target="_blank"
+            class="flex items-center justify-center gap-2 px-6 py-3 border border-white/20 rounded-full font-bold hover:bg-white/10 transition glow-effect btn-enhanced ripple-effect magnetic-element"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+
+        <div class="text-center">
+          <p class="text-gray-400 text-sm mb-4">
+            Available for freelance projects and short-term contracts. Open to
+            collaborations on practical web tools.
+          </p>
+          <div class="mt-6">
+            <a
+              href="resume.pdf"
+              target="_blank"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-cyan-500 text-black font-bold rounded-full hover:opacity-90 transition shadow-lg"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+              </svg>
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-10 text-center text-gray-500 text-sm px-4">
+      <div
+        class="w-32 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto mb-6 rounded-full"
+      ></div>
+      <div class="flex justify-center gap-6 mb-4">
+        <a
+          href="https://github.com/ajaymishraj"
+          target="_blank"
+          class="text-gray-400 hover:text-cyan-400 transition"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        <a
+          href="https://linkedin.com/in/ajay-mishra-558a62389/"
+          target="_blank"
+          class="text-gray-400 hover:text-cyan-400 transition"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+            />
+          </svg>
+        </a>
+        <a
+          href="mailto:ajaymishraj25@gmail.com"
+          class="text-gray-400 hover:text-cyan-400 transition"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+            ></path>
+            <path
+              d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+      <p>
+        Built by <span class="text-gradient">Ajay Mishra</span> — pragmatic
+        code, fast iteration.
+      </p>
+      <p class="mt-1 text-gray-600 text-xs">&copy; 2026 All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
